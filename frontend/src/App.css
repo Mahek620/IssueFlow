@@ -761,3 +761,72 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+.logout-button {
+  display: block;
+  margin-top: 4px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  color: #a9acc4;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.logout-button:hover {
+  color: #fff;
+}
+
+.auth-page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: #f6f7fb;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 400px;
+  background: #fff;
+  border: 1px solid #ebecf3;
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 10px 40px #20243a0f;
+}
+
+.auth-brand {
+  margin: 0 0 8px;
+  font-size: 26px;
+  letter-spacing: -1px;
+}
+
+.auth-brand span {
+  color: #6652d9;
+}
+
+.auth-subtitle {
+  margin: 0 0 24px;
+  color: #81869a;
+  font-size: 13px;
+}
+
+.auth-error {
+  margin: 0 0 14px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: #ffe5e7;
+  color: #c2323f;
+  font-size: 12px;
+}
+
+.auth-switch {
+  margin: 20px 0 0;
+  text-align: center;
+  font-size: 13px;
+  color: #81869a;
+}
+
+.auth-card .primary-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

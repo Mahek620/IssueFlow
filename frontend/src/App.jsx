@@ -2,11 +2,11 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import Board from "./Board";
 import EditTaskModal from "./EditTaskModal";
+import DashboardCharts from "./DashboardCharts";
 import { isOverdue } from "./utils";
 import { fetchTasks, createTaskApi, updateTaskApi, deleteTaskApi } from "./api";
-import DashboardCharts from "./DashboardCharts";
 
-function App() {
+function App({ user, onLogout }) {
   const [tasks, setTasks] = useState([]);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -324,10 +324,12 @@ function App() {
         )}
 
         <div className="sidebar-bottom">
-          <div className="avatar">M</div>
+          <div className="avatar">{user.name.charAt(0).toUpperCase()}</div>
           <div>
-            <strong>My Workspace</strong>
-            <p>Project Manager</p>
+            <strong>{user.name}</strong>
+            <button className="logout-button" onClick={onLogout}>
+              Logout
+            </button>
           </div>
         </div>
       </aside>
@@ -364,9 +366,6 @@ function App() {
                   <span>{note}</span>
                 </div>
               ))}
-            </section>
-
-            <section className="content-grid">
             </section>
 
             <DashboardCharts tasks={tasks} />
@@ -467,12 +466,12 @@ function App() {
             <div className="panel settings-panel">
               <h2>Workspace Profile</h2>
               <div className="setting-row">
-                <span>Workspace name</span>
-                <strong>IssueFlow</strong>
+                <span>Name</span>
+                <strong>{user.name}</strong>
               </div>
               <div className="setting-row">
-                <span>Role</span>
-                <strong>Project Manager</strong>
+                <span>Email</span>
+                <strong>{user.email}</strong>
               </div>
               <div className="setting-row">
                 <span>Total tasks</span>
