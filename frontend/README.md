@@ -1,16 +1,45 @@
-# React + Vite
+# IssueFlow
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A task management app with user login, a Kanban board and dashboard charts.
 
-Currently, two official plugins are available:
+## Tech stack
+- Frontend: React (Vite)
+- Backend: Spring Boot, Spring Data JPA
+- Database: PostgreSQL
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
+- Register and login (BCrypt password hashing, token based)
+- Each user sees only their own tasks
+- Create, edit and delete tasks
+- Status, priority, labels, assignee and due date (overdue highlighted)
+- Drag and drop Kanban board
+- Dashboard with status, priority and workload charts
 
-## React Compiler
+## Run locally
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 1. Database
+Create a PostgreSQL database:
+```sql
+CREATE DATABASE issueflow_db;
+```
 
-## Expanding the Oxlint configuration
+### 2. Backend (port 8080)
+```powershell
+cd IssueFlow
+$env:DB_PASSWORD='your_postgres_password'
+.\mvnw spring-boot:run
+```
+Tables are created automatically on first run.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+### 3. Frontend (port 5173)
+```powershell
+cd IssueFlow\frontend
+npm install
+npm run dev
+```
+
+Open http://localhost:5173, register an account and start adding tasks.
+
+## Notes
+- The database password is read from the `DB_PASSWORD` environment variable, never stored in the repo.
+- Authentication is a simple token scheme meant for learning. For production use Spring Security with JWT and HTTPS.
