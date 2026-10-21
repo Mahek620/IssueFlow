@@ -2,10 +2,18 @@
 
 A full-stack task management app with user login, a drag and drop Kanban board, dashboard charts and a dark mode.
 
+## Live demo
+
+- **App:** https://issue-flow-ashen.vercel.app
+- **API:** https://issueflow-9z85.onrender.com
+
+> The backend runs on a free instance, so the first request after a period of inactivity can take 30-60 seconds to respond.
+
 ## Tech stack
 - **Frontend:** React (Vite)
 - **Backend:** Spring Boot, Spring Data JPA
 - **Database:** PostgreSQL
+- **Hosting:** Vercel (frontend), Render (backend), Neon (PostgreSQL)
 
 ## Features
 - Register and login (BCrypt password hashing, token based)
@@ -62,12 +70,23 @@ npm run dev
 
 Open http://localhost:5173, register an account and start adding tasks.
 
+## Environment variables
+
+| Variable | Used by | Description |
+|---|---|---|
+| `DB_URL` | Backend | JDBC URL (defaults to local PostgreSQL) |
+| `DB_USERNAME` | Backend | Database user (defaults to `postgres`) |
+| `DB_PASSWORD` | Backend | Database password |
+| `CORS_ORIGINS` | Backend | Allowed frontend origins |
+| `VITE_API_URL` | Frontend | Backend API base URL |
+
 ## Project structure
 ```
 IssueFlow
 ├── src/main/java/com/issueflow   Spring Boot backend
 ├── frontend/src                  React frontend
-└── screenshots                   README images
+├── screenshots                   README images
+└── Dockerfile                    Backend container (Render)
 ```
 
 ## API overview
@@ -81,7 +100,7 @@ IssueFlow
 | DELETE | /api/tasks/{id} | Delete a task |
 
 ## Notes
-- The database password is read from the `DB_PASSWORD` environment variable and is never stored in the repository.
+- The database password is read from environment variables and is never stored in the repository.
 - Authentication is a simple token scheme meant for learning. For production use Spring Security with JWT and HTTPS.
 
 ## Author
