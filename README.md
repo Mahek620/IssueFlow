@@ -1,20 +1,88 @@
 # IssueFlow
 
-Task management app with a Kanban board and dashboard charts.
+A full-stack task management app with user login, a drag and drop Kanban board, dashboard charts and a dark mode.
 
 ## Tech stack
-- Frontend: React (Vite)
-- Backend: Spring Boot, Spring Data JPA
-- Database: PostgreSQL
+- **Frontend:** React (Vite)
+- **Backend:** Spring Boot, Spring Data JPA
+- **Database:** PostgreSQL
 
 ## Features
-- Create, edit, delete tasks
-- Status, priority, labels, assignee, due date
+- Register and login (BCrypt password hashing, token based)
+- Every user sees only their own tasks
+- Create, edit and delete tasks
+- Status, priority, labels, assignee and due date (overdue tasks highlighted)
 - Drag and drop Kanban board
-- Dashboard with charts
+- Dashboard with status, priority and assignee workload charts
+- Search, filters and sorting
+- Dark mode (saved between visits)
+- Toast notifications and a custom delete confirmation
+
+## Screenshots
+
+### Login
+![Login](screenshots/login.png)
+
+### Dashboard
+![Dashboard](screenshots/Dashboard.png)
+
+![Dashboard with tasks](screenshots/Dashboard2.png)
+
+### Kanban board
+![Board](screenshots/Board.png)
+
+### All tasks with filters
+![Tasks](screenshots/Tasks.png)
+
+### Create task
+![Create task](screenshots/CreateTask.png)
 
 ## Run locally
-1. Create a PostgreSQL database named `issueflow_db`.
-2. Set the environment variable `DB_PASSWORD`.
-3. Backend: `.\mvnw spring-boot:run` (port 8080)
-4. Frontend: `cd frontend`, `npm install`, `npm run dev` (port 5173)
+
+### 1. Database
+Create a PostgreSQL database:
+```sql
+CREATE DATABASE issueflow_db;
+```
+
+### 2. Backend (port 8080)
+```powershell
+cd IssueFlow
+$env:DB_PASSWORD='your_postgres_password'
+.\mvnw spring-boot:run
+```
+Tables are created automatically on the first run.
+
+### 3. Frontend (port 5173)
+```powershell
+cd IssueFlow\frontend
+npm install
+npm run dev
+```
+
+Open http://localhost:5173, register an account and start adding tasks.
+
+## Project structure
+```
+IssueFlow
+├── src/main/java/com/issueflow   Spring Boot backend
+├── frontend/src                  React frontend
+└── screenshots                   README images
+```
+
+## API overview
+| Method | Endpoint | Description |
+|---|---|---|
+| POST | /api/auth/register | Create an account |
+| POST | /api/auth/login | Login and get a token |
+| GET | /api/tasks | List your tasks |
+| POST | /api/tasks | Create a task |
+| PUT | /api/tasks/{id} | Update a task |
+| DELETE | /api/tasks/{id} | Delete a task |
+
+## Notes
+- The database password is read from the `DB_PASSWORD` environment variable and is never stored in the repository.
+- Authentication is a simple token scheme meant for learning. For production use Spring Security with JWT and HTTPS.
+
+## Author
+Mahek
