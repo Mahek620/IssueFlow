@@ -830,3 +830,83 @@ footer {
   opacity: 0.6;
   cursor: not-allowed;
 }
+.toast-stack {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 200;
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 220px;
+  max-width: 340px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  background: #1c1f2e;
+  color: #fff;
+  font-size: 13px;
+  box-shadow: 0 10px 30px #171a3240;
+  border-left: 4px solid #22b07d;
+  animation: toast-in 0.25s ease;
+}
+
+.toast-error {
+  border-left-color: #e5484d;
+}
+
+.toast-icon {
+  width: 20px;
+  height: 20px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #22b07d;
+  font-size: 12px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.toast-error .toast-icon {
+  background: #e5484d;
+}
+
+@keyframes toast-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.confirm-box {
+  max-width: 400px;
+}
+
+.confirm-box h2 {
+  margin: 0 0 8px;
+  font-size: 18px;
+}
+
+.confirm-text {
+  margin: 0 0 20px;
+  font-size: 13px;
+  color: #81869a;
+}
+
+.danger-button {
+  background: #e5484d;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 11px 18px;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.danger-button:hover {
+  background: #c93a3f;
+}

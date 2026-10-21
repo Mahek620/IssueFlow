@@ -3,6 +3,7 @@ import "./App.css";
 import Board from "./Board";
 import EditTaskModal from "./EditTaskModal";
 import DashboardCharts from "./DashboardCharts";
+import { ToastStack, ConfirmDialog } from "./Toast";
 import { isOverdue } from "./utils";
 import { fetchTasks, createTaskApi, updateTaskApi, deleteTaskApi } from "./api";
 
@@ -32,11 +33,31 @@ function App({ user, onLogout }) {
       /* ignore */
     }
   }
+    const [toasts, setToasts] = useState([]);
+  const [confirmState, setConfirmState] = useState(null);
+
+  function notify(message, type = "success") {
+    const id = Date.now() + Math.random();
+    setToasts((prev) => [...prev, { id, message, type }]);
+    setTimeout(() => {
+      setToasts((prev) => prev.filter((t) => t.id !== id));
+    }, 3000);
+  }
+
+  function askConfirm(message) {
+    return new Promise((resolve) => setConfirmState({ message, resolve }));
+  }
+
+  function answerConfirm(result) {
+    confirmState.resolve(result);
+    setConfirmState(null);
+  }
+
   useEffect(() => {
     fetchTasks()
       .then(setTasks)
       .catch(() =>
-        alert("Backend se connect nahi ho paya. Spring Boot chal raha hai?")
+        notify("Backend se connect nahi ho paya. Spring Boot chal raha hai?", "error")
       );
   }, []);
 
@@ -44,9 +65,10 @@ function App({ user, onLogout }) {
     try {
       const saved = await createTaskApi(data);
       setTasks((previous) => [...previous, saved]);
+      notify("Task created");
       return true;
     } catch {
-      alert("Task save nahi ho paya.");
+      notify("Task save nahi ho paya.", "error");
       return false;
     }
   }
@@ -55,7 +77,7 @@ function App({ user, onLogout }) {
     e.preventDefault();
 
     if (!title.trim()) {
-      alert("Please enter a task title.");
+      notify("Please enter a task title.", "error");
       return;
     }
 
@@ -82,12 +104,14 @@ function App({ user, onLogout }) {
   }
 
   async function deleteTask(id) {
-    if (!window.confirm("Are you sure you want to delete this task?")) return;
+    const yes = await askConfirm("Ye task permanently delete ho jayega.");
+    if (!yes) return;
     try {
       await deleteTaskApi(id);
       setTasks((previous) => previous.filter((task) => task.id !== id));
+      notify("Task deleted");
     } catch {
-      alert("Delete nahi ho paya.");
+      notify("Delete nahi ho paya.", "error");
     }
   }
 
@@ -97,8 +121,9 @@ function App({ user, onLogout }) {
     try {
       const saved = await updateTaskApi({ ...task, status: newStatus });
       setTasks((previous) => previous.map((t) => (t.id === id ? saved : t)));
+      notify("Status updated");
     } catch {
-      alert("Status update nahi ho paya.");
+      notify("Status update nahi ho paya.", "error");
     }
   }
 
@@ -109,8 +134,9 @@ function App({ user, onLogout }) {
         previous.map((t) => (t.id === saved.id ? saved : t))
       );
       setEditingTask(null);
+      notify("Task updated");
     } catch {
-      alert("Task update nahi ho paya.");
+      notify("Task update nahi ho paya.", "error");
     }
   }
 
@@ -512,13 +538,21 @@ function App({ user, onLogout }) {
 
         <footer>IssueFlow © 2026 · Built to keep work organized.</footer>
       </main>
+ <ToastStack toasts={toasts} />
 
+      {confirmState && (
+        <ConfirmDialog
+          message={confirmState.message}
+          onAnswer={answerConfirm}
+        />
+      )}
       {editingTask && (
         <EditTaskModal
           key={editingTask.id}
           task={editingTask}
           onSave={saveEdit}
           onClose={() => setEditingTask(null)}
+          
         />
       )}
     </div>
