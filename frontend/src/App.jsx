@@ -18,7 +18,20 @@ function App({ user, onLogout }) {
   const [activePage, setActivePage] = useState("Dashboard");
   const [search, setSearch] = useState("");
   const [editingTask, setEditingTask] = useState(null);
+  const [theme, setTheme] = useState(
+    () => document.documentElement.dataset.theme || "light"
+  );
 
+  function toggleTheme() {
+    const next = theme === "dark" ? "light" : "dark";
+    setTheme(next);
+    document.documentElement.dataset.theme = next;
+    try {
+      localStorage.setItem("theme", next);
+    } catch {
+      /* ignore */
+    }
+  }
   useEffect(() => {
     fetchTasks()
       .then(setTasks)
@@ -337,7 +350,16 @@ function App({ user, onLogout }) {
       <main className="main">
         <header className="topbar">
           <span>Workspace / {activePage}</span>
-          <span className="today">Issue Tracking System</span>
+                   <div className="topbar-right">
+            <button
+              type="button"
+              className="theme-toggle"
+              onClick={toggleTheme}
+            >
+              {theme === "dark" ? "☀ Light" : "🌙 Dark"}
+            </button>
+            <span className="today">Issue Tracking System</span>
+          </div>
         </header>
 
         {activePage === "Dashboard" && (

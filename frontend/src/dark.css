@@ -1,0 +1,204 @@
+:root[data-theme="dark"] {
+  color: #e6e8f2;
+  background: #12141f;
+  color-scheme: dark;
+}
+
+[data-theme="dark"] body {
+  background: #12141f;
+  color: #e6e8f2;
+}
+
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] h4 {
+  color: #f1f2f8;
+}
+
+[data-theme="dark"] .subtitle,
+[data-theme="dark"] .stat-card p,
+[data-theme="dark"] .stat-card span,
+[data-theme="dark"] .panel-heading p,
+[data-theme="dark"] .task-info p,
+[data-theme="dark"] .empty-state p,
+[data-theme="dark"] .status-label,
+[data-theme="dark"] .setting-row span,
+[data-theme="dark"] .settings-note,
+[data-theme="dark"] .chart-note,
+[data-theme="dark"] .bar-label,
+[data-theme="dark"] .legend,
+[data-theme="dark"] .auth-subtitle,
+[data-theme="dark"] .auth-switch,
+[data-theme="dark"] .topbar,
+[data-theme="dark"] .card-id,
+[data-theme="dark"] .board-card p,
+[data-theme="dark"] .column-empty,
+[data-theme="dark"] .add-task-button,
+[data-theme="dark"] footer {
+  color: #9a9fb8;
+}
+
+[data-theme="dark"] .topbar,
+[data-theme="dark"] .task-item,
+[data-theme="dark"] .setting-row {
+  border-color: #2b2f45;
+}
+
+[data-theme="dark"] .stat-card,
+[data-theme="dark"] .panel,
+[data-theme="dark"] .auth-card,
+[data-theme="dark"] .modal {
+  background: #1c1f2e;
+  border-color: #2b2f45;
+  box-shadow: none;
+}
+
+[data-theme="dark"] .auth-page {
+  background: #12141f;
+}
+
+[data-theme="dark"] input,
+[data-theme="dark"] textarea,
+[data-theme="dark"] select,
+[data-theme="dark"] .search-input,
+[data-theme="dark"] .board-filter,
+[data-theme="dark"] .add-form input {
+  background: #151826;
+  color: #e6e8f2;
+  border-color: #2b2f45;
+}
+
+[data-theme="dark"] .task-info select,
+[data-theme="dark"] .filter-bar select {
+  background: #151826;
+  color: #e6e8f2;
+  border-color: #2b2f45;
+}
+
+[data-theme="dark"] .legend li strong,
+[data-theme="dark"] .bar-count,
+[data-theme="dark"] .donut-number {
+  color: #f1f2f8;
+  fill: #f1f2f8;
+}
+
+[data-theme="dark"] .donut-caption {
+  fill: #9a9fb8;
+}
+
+[data-theme="dark"] .donut circle:first-of-type {
+  stroke: #2b2f45;
+}
+
+[data-theme="dark"] .bar-track {
+  background: #2b2f45;
+}
+
+[data-theme="dark"] .mini-stat {
+  background: #151826;
+}
+
+[data-theme="dark"] .mini-stat.danger {
+  background: #3a1f27;
+}
+
+[data-theme="dark"] .board-column {
+  background: #171a29;
+}
+
+[data-theme="dark"] .board-column.drag-over {
+  background: #22253d;
+  border-color: #7764e5;
+}
+
+[data-theme="dark"] .board-card {
+  background: #1c1f2e;
+  border-color: #2b2f45;
+  box-shadow: none;
+}
+
+[data-theme="dark"] .column-empty {
+  border-color: #2b2f45;
+}
+
+[data-theme="dark"] .tag,
+[data-theme="dark"] .label-chip {
+  background: #151826;
+  border-color: #2b2f45;
+  color: #b8bcd2;
+}
+
+[data-theme="dark"] .due-chip {
+  background: #2b2f45;
+  color: #b8bcd2;
+}
+
+[data-theme="dark"] .due-chip.overdue {
+  background: #3a1f27;
+  color: #ff8a93;
+}
+
+[data-theme="dark"] .assignee-chip {
+  background: #26234a;
+  color: #c9bfff;
+}
+
+[data-theme="dark"] .status.open { background: #3a2f17; color: #f5c46b; }
+[data-theme="dark"] .status.in_progress { background: #26234a; color: #b5a8ff; }
+[data-theme="dark"] .status.closed { background: #14352b; color: #5fd3a6; }
+
+[data-theme="dark"] .priority-low { background: #15304a; color: #7cc0f5; }
+[data-theme="dark"] .priority-medium { background: #3a2f17; color: #f5c46b; }
+[data-theme="dark"] .priority-high { background: #3a1f27; color: #ff8a93; }
+
+[data-theme="dark"] .delete-button,
+[data-theme="dark"] .edit-button {
+  background: transparent;
+}
+
+[data-theme="dark"] .edit-button:hover {
+  background: #26234a;
+}
+
+[data-theme="dark"] .text-button {
+  color: #b5a8ff;
+}
+
+[data-theme="dark"] .empty-icon,
+[data-theme="dark"] .welcome-icon {
+  background: #26234a;
+}
+
+[data-theme="dark"] .modal-close {
+  color: #9a9fb8;
+}
+
+[data-theme="dark"] .modal-backdrop {
+  background: #000000a0;
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  margin-right: 16px;
+  border: 1px solid #e1e3ec;
+  border-radius: 20px;
+  background: transparent;
+  color: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+[data-theme="dark"] .theme-toggle {
+  border-color: #2b2f45;
+  color: #e6e8f2;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+}
